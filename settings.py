@@ -10,9 +10,12 @@ pygame.display.set_icon(pygame.image.load('assets/images/player/stand_1.png'))
 
 clock = pygame.time.Clock()
 
-bg = pygame.transform.scale(pygame.image.load("assets/background/level1.png"), (W, H))
+platforms = pygame.sprite.Group()
+coins = pygame.sprite.Group()
+bg = pygame.transform.scale(pygame.image.load("assets/images/1626767904_11-kartinkin-com-p-galakticheskii-fon-krasivo-22.jpg"), (W, H))
 
-platform_image = pygame.image.load("assets/background/platform (1).png")
+platform_image = pygame.image.load("assets/images/98914879c7817315d7734f9930f5abc0.webp")
+
 
 player_images = [
     pygame.image.load("assets/images/player/stand_1.png"),
@@ -32,3 +35,5 @@ player_images = [
     pygame.image.load("assets/images/player/move_left_5.png"),
     pygame.image.load("assets/images/player/move_left_6.png"),
 ]
+
+coin_image  = pygame.image.load("assets/images/coin/coin_icon.png")
