@@ -5,21 +5,42 @@ level1 = [
     "                                                                      ",
     "                                                                      ",
     "                                  o                                   ",
-    "                                ---                                   ",
+    "                        ---              -           --               ",
+    "       4      1     O                                                 ",
+    "      --    ---      ---    --                                        ",
+    "   o                                               ---                ",
+    "  ---     3     o                             0           o           ",
+    "        ----      ---               o         ---                     ",
+    "     o                         ---                                    ",
+    "    ---                                   ---                         ",
+    "                   o                                      ---         ",
+    "                 ---                ----                 o          2 ",
+    "---                         --                    --       --    -  - ",
+
+]
+
+level2 = [
     "                                                                      ",
-    "        o                  ----         ------                        ",
-    "   o                                                                  ",
-    "  ---     -----       o                                        o      ",
-    "                    -----                o                   ----     ",
-    "       o                              ------                          ",
-    "     ----                                            ----             ",
-    "                   o                                                  ",
-    "                 ----                         -----                 oo",
-    "----                                                              ----",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "                                                                      ",
+    "        ---      --   --                                              ",
+    "                               --              --                     ",
+    "     --      ---                                                    - ",
+    "                         ---                --   -                    ",
+    "---                              --                             ---   ",
+    "                                          --                          ",
+    "   --                                              ---     -          ",
+    "                                     ---                              ",
+    "-                                                         --          ",
 ]
 
 level1_width = len(level1[0]) * 100
-level1_height = len(level1) * 50
+level1_height = len(level1) * 30
+level2_width = len(level2[0]) * 100
+level2_height = len(level2) * 30
+
 
 level_objects = pygame.sprite.Group()
 
@@ -53,19 +74,33 @@ camera = Camera(camera_config, level1_width, level1_height)
 
 
 def draw_level(level: list):
+    global key, box, door
     x = y = 0
     for row in level:
         for symbol in row:
             if symbol == "-":
-                platform = MapObject(x, y, 100, 50, platform_image)
+                platform = MapObject(x, y, 100, 30, platform_image)
                 level_objects.add(platform)
                 platforms.add(platform)
             if symbol == 'o':
-                coin = MapObject(x, y, 50, 50, coin_image)
+                coin = MapObject(x, y, 30, 30, coin_image)
                 level_objects.add(coins)
                 coins.add(coin)
+            if symbol == '1':
+                rose = MapObject(x, y, 35, 35, rose_image)
+                level_objects.add(rose)
+            if symbol == '2':
+                door = MapObject(x, y, 80, 80, door_image)
+                level_objects.add(door)
+            if symbol == '3':
+                box = MapObject(x, y, 60, 60, box_image)
+                level_objects.add(box)
+            if symbol == '4':
+                key = MapObject(x, y, 40, 40, key_image)
+                level_objects.add(key)
+
             x +=100
         x = 0
         y += 50
 
-    return level_objects
+    return level_objects, key, box, door, rose
